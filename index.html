@@ -4,97 +4,71 @@
 <head>
   <meta charset=UTF-8 />
   <link rel="stylesheet" type="text/css" href="styles.css" />
+
 </head>
 
 <body>
-  <script src="three.min.js"></script>
-  <script src="GLTFLoader.js"></script>
-  <script src="OrbitControls.js"></script>
-  <script>
-    let scene, camera, renderer;
+    <script src="three.js"></script>
+    <script src="three.min.js"></script>
+    <script src="OBJLoader.js"></script>
+    <script src="OrbitControls.js"></script>
+    <script src="MTLLoader.js"></script>
+		<script>
+			var scene = new THREE.Scene();
 
-    function init() {
-      scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xdddddd);
-      camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5000);
-      camera.rotation.y = 45 / 180 * Math.PI;
-      camera.position.x = 800;
-      camera.position.y = 100;
-      camera.position.z = 1000;
-      renderer = new THREE.WebGLRenderer({
-        antialias: true
-      });
-      var controls = new THREE.OrbitControls(camera, renderer.domElement);
-      controls.addEventListener('change', render);
-      hlight = new THREE.AmbientLight(0x404040, 100);
-      scene.add(hlight);
-      directionalLight = new THREE.DirectionalLight(0xffffff, 100);
-      directionalLight.position.set(0, 1, 0);
-      directionalLight.castShadow = true;
-      scene.add(directionalLight);
-      light = new THREE.PointLight(0xc4c4c4, 10);
-      light.position.set(0, 300, 500);
-      scene.add(light);
-      light2 = new THREE.PointLight(0xc4c4c4, 10);
-      light2.position.set(500, 100, 0);
-      scene.add(light2);
-      light3 = new THREE.PointLight(0xc4c4c4, 10);
-      light3.position.set(0, 100, -500);
-      scene.add(light3);
-      light4 = new THREE.PointLight(0xc4c4c4, 10);
-      light4.position.set(-500, 300, 500);
-      scene.add(light4);
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+camera.position.z = 200;
 
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
+var renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setClearColor( 0xffffff, 0 );
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
 
-      var loader = new THREE.OBJLoader();
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.25;
+controls.enableZoom = true;
 
-      // load a resource
-      loader.load(
-        // resource URL
-        'tajine.obj',
-        // called when resource is loaded
-        function ( object ) {
+var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
+keyLight.position.set(-100, 0, 100);
 
-          scene.add( object );
+var fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(240, 100%, 75%)'), 0.75);
+fillLight.position.set(100, 0, 100);
 
-        },
-        // called when loading is in progresses
-        function ( xhr ) {
+var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
+backLight.position.set(100, 0, -100).normalize();
 
-          console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+scene.add(keyLight);
+scene.add(fillLight);
+scene.add(backLight);
 
-        },
-        // called when loading has errors
-        function ( error ) {
+var mtlLoader = new THREE.MTLLoader();
+//mtlLoader.setTexturePath('/assets/table');
+mtlLoader.setResourcePath('/assets/')
+mtlLoader.setPath('/assets');
+mtlLoader.load('/chemaa.mtl', function (materials) {
 
-          console.log( 'An error happened' );
+    materials.preload();
 
-        }
-      );
+    var objLoader = new THREE.OBJLoader();
+    objLoader.setMaterials(materials);
+    objLoader.setPath('/assets');
+    objLoader.load('/chemaa.obj', function (object) {
 
-      /*loader.load('scene.gltf', function (gltf) {
-        car = gltf.scene.children[0];
-        car.scale.set(0.5, 0.5, 0.5);
-        scene.add(gltf.scene);
-        animate();
-      });*/
-    }
+        scene.add(object);
+        object.position.y -= 60;
 
+    });
 
-    function animate() {
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    }
+});
 
-    function render() {
+var animate = function () {
+	requestAnimationFrame( animate );
+	controls.update();
+	renderer.render(scene, camera);
+};
 
-      renderer.render(scene, camera);
-
-    }
-    init();
-  </script>
-</body>
-
+animate();
+		</script>
+	</body>
 </html>

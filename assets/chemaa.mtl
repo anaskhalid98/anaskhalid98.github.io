@@ -2,14 +2,15 @@
 ## Alias OBJ Material File
 # Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
 
-newmtl Stone_Moss1
+newmtl Metal_Seamed
 Ka 0.000000 0.000000 0.000000
-Kd 0.086275 0.086275 0.086275
+Kd 0.462745 0.466667 0.450980
 Ks 0.330000 0.330000 0.330000
-map_Kd tajine/Stone_Moss1.jpg
+map_Kd chemaa/Metal_Seamed.jpg
 
-newmtl FrontColor
+newmtl _Metal_Seamed_1
 Ka 0.000000 0.000000 0.000000
-Kd 1.000000 1.000000 1.000000
+Kd 0.462745 0.466667 0.450980
 Ks 0.330000 0.330000 0.330000
+map_Kd chemaa/_Metal_Seamed_1.jpg
 
