@@ -17,7 +17,7 @@
 			var scene = new THREE.Scene();
 
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-camera.position.z = 200;
+camera.position.z = 60;
 
 var renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setClearColor( 0xffffff, 0 );
@@ -47,14 +47,14 @@ var mtlLoader = new THREE.MTLLoader();
 //mtlLoader.setTexturePath('/assets/table');
 mtlLoader.setResourcePath('/assets/')
 mtlLoader.setPath('/assets');
-mtlLoader.load('/table.mtl', function (materials) {
+mtlLoader.load('/tablemaroc2.mtl', function (materials) {
 
     materials.preload();
 
     var objLoader = new THREE.OBJLoader();
     objLoader.setMaterials(materials);
     objLoader.setPath('/assets');
-    objLoader.load('/table.obj', function (object) {
+    objLoader.load('/tablemaroc2.obj', function (object) {
 
         scene.add(object);
 
