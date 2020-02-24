@@ -45,16 +45,16 @@ var ambientLight = new THREE.AmbientLight('#fff');
 scene.add(ambientLight);
 var mtlLoader = new THREE.MTLLoader();
 //mtlLoader.setTexturePath('/assets/table');
-mtlLoader.setResourcePath('/assets/')
-mtlLoader.setPath('/assets');
-mtlLoader.load('/tablemaroc2.mtl', function (materials) {
+mtlLoader.setResourcePath('/anaskhalid98.github.io/assets/')
+mtlLoader.setPath('/anaskhalid98.github.io/assets');
+mtlLoader.load('/anaskhalid98.github.io/tablemaroc2.mtl', function (materials) {
 
     materials.preload();
 
     var objLoader = new THREE.OBJLoader();
     objLoader.setMaterials(materials);
-    objLoader.setPath('/assets');
-    objLoader.load('/tablemaroc2.obj', function (object) {
+    objLoader.setPath('/anaskhalid98.github.io/assets');
+    objLoader.load('/anaskhalid98.github.io/tablemaroc2.obj', function (object) {
 
         scene.add(object);
 
