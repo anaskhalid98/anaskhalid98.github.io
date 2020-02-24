@@ -1,0 +1,28 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl _Color_B01_3
+Ka 0.000000 0.000000 0.000000
+Kd 0.670588 0.552941 0.403922
+Ks 0.330000 0.330000 0.330000
+map_Kd table/_Color_B01_3.jpg
+
+newmtl _Color_A03_5
+Ka 0.000000 0.000000 0.000000
+Kd 0.827451 0.650980 0.407843
+Ks 0.330000 0.330000 0.330000
+map_Kd table/_Color_A03_5.jpg
+
+newmtl _Color_A03_5_1_
+Ka 0.000000 0.000000 0.000000
+Kd 0.827451 0.650980 0.407843
+Ks 0.330000 0.330000 0.330000
+map_Kd table/_Color_A03_5_1_.jpg
+
+newmtl _Color_B05_2
+Ka 0.000000 0.000000 0.000000
+Kd 0.729412 0.501961 0.254902
+Ks 0.330000 0.330000 0.330000
+map_Kd table/_Color_B05_2.jpg
+

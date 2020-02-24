@@ -41,22 +41,22 @@ backLight.position.set(100, 0, -100).normalize();
 scene.add(keyLight);
 scene.add(fillLight);
 scene.add(backLight);
-
+var ambientLight = new THREE.AmbientLight('#fff');
+scene.add(ambientLight);
 var mtlLoader = new THREE.MTLLoader();
 //mtlLoader.setTexturePath('/assets/table');
 mtlLoader.setResourcePath('/assets/')
 mtlLoader.setPath('/assets');
-mtlLoader.load('/chemaa.mtl', function (materials) {
+mtlLoader.load('/table.mtl', function (materials) {
 
     materials.preload();
 
     var objLoader = new THREE.OBJLoader();
     objLoader.setMaterials(materials);
     objLoader.setPath('/assets');
-    objLoader.load('/chemaa.obj', function (object) {
+    objLoader.load('/table.obj', function (object) {
 
         scene.add(object);
-        object.position.y -= 60;
 
     });
 
